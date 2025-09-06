@@ -37,8 +37,6 @@ else:
 print("🚀 Starting Country Data Flask Server...")
 print("🌐 Server will run on: http://0.0.0.0:5000")
 print("📱 Web Interface: http://your-aws-ip:5000")
-print("🔌 API Endpoint: http://your-aws-ip:5000/get_country_data")
-print("🔧 Chrome Extension: Configure popup.js with your AWS IP")
 print("=" * 50)
 
 @app.route('/')
