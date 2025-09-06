@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Data Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold text-gray-800 mb-2">Country Data Dashboard</h1>
+            <p class="text-gray-600">Get detailed information about countries worldwide</p>
+        </div>
+
+        <!-- Main Content Card -->
+        <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-8">
+            <!-- Country Selection -->
+            <div class="mb-8">
+                <label for="country-select" class="block text-lg font-semibold text-gray-700 mb-4">Select a Country:</label>
+                <div class="relative">
+                    <select id="country-select" class="w-full p-4 text-lg border-2 border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all">
+                        <option value="" disabled selected>-- Choose a country --</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="mb-8">
+                <button id="get-details-btn" class="w-full bg-blue-600 text-white font-semibold py-4 px-6 rounded-lg shadow-md hover:bg-blue-700 transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none">
+                    <span id="btn-text">Get Country Details</span>
+                </button>
+            </div>
+
+            <!-- Loading Indicator -->
+            <div id="loading-indicator" class="hidden text-center py-8">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-t-blue-500 border-gray-200"></div>
+                <p class="mt-4 text-gray-600 text-lg">Fetching country data...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div id="error-message" class="hidden mb-6 p-4 bg-red-100 text-red-700 rounded-lg border border-red-200"></div>
+            
+            <!-- Data Container -->
+            <div id="data-container" class="hidden">
+                <!-- View Toggle Buttons -->
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-gray-800">Country Details</h2>
+                    <div class="flex space-x-2">
+                        <button id="table-view-btn" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                            Table View
+                        </button>
+                        <button id="json-view-btn" class="px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700 transition-colors">
+                            JSON View
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Table View -->
+                <div id="table-view" class="overflow-x-auto rounded-lg shadow-sm border border-gray-200">
+                    <table class="min-w-full divide-y divide-gray-200 bg-white">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="py-4 px-6 text-left text-sm font-semibold text-gray-500 uppercase tracking-wider">Metric</th>
+                                <th class="py-4 px-6 text-left text-sm font-semibold text-gray-500 uppercase tracking-wider">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody id="data-table-body" class="bg-white divide-y divide-gray-200">
+                            <!-- Data rows will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- JSON View -->
+                <div id="json-view" class="hidden">
+                    <div class="bg-gray-900 text-green-400 p-6 rounded-lg font-mono text-sm overflow-x-auto">
+                        <pre id="json-display"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="text-center mt-8 text-gray-500">
+            <p>Powered by Gemini AI • Country Data Dashboard</p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

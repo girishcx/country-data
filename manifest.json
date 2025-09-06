@@ -2,7 +2,7 @@
     "manifest_version": 3,
     "name": "Country Data Dashboard",
     "version": "1.0",
-    "description": "A Chrome extension to display key data about top countries.",
+    "description": "A Chrome extension to display key data about countries worldwide.",
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
@@ -10,6 +10,13 @@
         }
     },
     "host_permissions": [
-        "http://127.0.0.1:5000/"
+        "http://127.0.0.1:5000/*",
+        "http://localhost:5000/*",
+        "http://*:5000/*",
+        "https://*:5000/*"
+    ],
+    "permissions": [
+        "activeTab",
+        "tabs"
     ]
 }

@@ -1,7 +1,7 @@
 import os
 import json
 import google.generativeai as genai
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 from dotenv import load_dotenv
 
@@ -35,8 +35,16 @@ else:
     print("💡 Run 'python setup_api_key.py' to configure your API key")
 
 print("🚀 Starting Country Data Flask Server...")
-print("🌐 Server will run on: http://127.0.0.1:5000")
+print("🌐 Server will run on: http://0.0.0.0:5000")
+print("📱 Web Interface: http://your-aws-ip:5000")
+print("🔌 API Endpoint: http://your-aws-ip:5000/get_country_data")
+print("🔧 Chrome Extension: Configure popup.js with your AWS IP")
 print("=" * 50)
+
+@app.route('/')
+def index():
+    """Serve the main web interface"""
+    return render_template('index.html')
 
 @app.route('/get_country_data', methods=['POST'])
 def get_country_data():
@@ -228,5 +236,7 @@ def get_sample_country_data(country_name):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    # For production deployment, set debug=False
+    debug_mode = os.getenv('FLASK_DEBUG', 'True').lower() == 'true'
+    app.run(host='0.0.0.0', port=5000, debug=debug_mode)
 
